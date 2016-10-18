@@ -71,8 +71,6 @@ Partial Class Decrypt
         Me.Controls.Add(Me.PasswordBox)
         Me.Controls.Add(Me.PasswordLabel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "Decrypt"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

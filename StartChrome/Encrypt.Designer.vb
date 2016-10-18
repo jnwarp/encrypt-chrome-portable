@@ -69,6 +69,8 @@ Partial Class Encrypt
         Me.Controls.Add(Me.TimeLabel)
         Me.Controls.Add(Me.WarningLabel)
         Me.Controls.Add(Me.ProgressBar)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Encrypt"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Encryping Chrome..."
