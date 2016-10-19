@@ -4,6 +4,7 @@
     Public userPath As String
     Public username As String
     Public chromeVersion As String = "Chromium"
+    Public version As String = "1.0.0"
 
     Sub EncryptChrome()
         'create backup of old zip file

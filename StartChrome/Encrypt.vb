@@ -8,6 +8,9 @@ Public Class Encrypt
     End Sub
 
     Private Sub Encrypt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'print the current version to the console
+        Debug.Print(Data.version)
+
         'get the current path and username
         Data.userPath = Directory.GetCurrentDirectory()
         Data.username = Environment.UserName
