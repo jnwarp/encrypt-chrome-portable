@@ -36,6 +36,10 @@ When a password is entered:
  - Decrypt
   - `7z.exe x -bsp1 -p%passHash% -o"C:\Users\%username%\AppData\Local\%chromeVersion%Portable\" "%userPath%\chrome.7z"`
 
+To change the version of Chrome that is used:
+ - open the `StartChrome\Data.vb\` file and look for this line:
+  - `Public chromeVersion As String = "Chromium"`
+ - change `Chromium` to the version you want
 
 
 [7z]: http://portableapps.com/apps/utilities/7-zip_portable
