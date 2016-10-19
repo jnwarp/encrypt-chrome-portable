@@ -73,7 +73,7 @@ Partial Class Encrypt
         Me.MinimizeBox = False
         Me.Name = "Encrypt"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Encryping Chrome..."
+        Me.Text = "Encryping..."
         Me.ResumeLayout(False)
 
     End Sub
