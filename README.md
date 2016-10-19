@@ -9,7 +9,7 @@ Install
 Steps to install
  - Download [7Zip portable][7z]
  - Extract 7Zip portable into a folder like `Desktop\Chrome`
- - Download the `StartChrome.exe` into this folder
+ - Download the [StartChrome.exe][Release] into this folder
  - Download [Chromium][Cr] or [Chrome][GC] portable
  - Extract it to `C:\Users\%USERNAME%\AppData\Local\ChomiumPortable`
  - Run `StartChrome.exe` and type `!password` with the `!` before your password
@@ -45,3 +45,4 @@ To change the version of Chrome that is used:
 [7z]: http://portableapps.com/apps/utilities/7-zip_portable
 [Cr]: http://crportable.sourceforge.net/
 [GC]: http://portableapps.com/apps/internet/google_chrome_portable
+[Release]: https://github.com/jnwarp/encrypt-chrome-portable/releases
