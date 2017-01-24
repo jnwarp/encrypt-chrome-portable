@@ -22,6 +22,7 @@ Public Class Decrypt
 
             'exit program if nothing entered
             If plainPass = "" Then
+                UpdateProgress.Enabled = False
                 End
             ElseIf Mid(plainPass, 1, 1) = "!" Then
                 encryptMode = True
@@ -47,10 +48,10 @@ Public Class Decrypt
 
             'start encrypting/decrypting
             If encryptMode Then
-                UpdateProgress.Start()
+                UpdateProgress.Enabled = True
                 System.Threading.ThreadPool.QueueUserWorkItem(AddressOf Data.EncryptChrome)
             Else
-                UpdateProgress.Start()
+                UpdateProgress.Enabled = True
                 System.Threading.ThreadPool.QueueUserWorkItem(AddressOf Data.DecryptChrome)
             End If
         End If
@@ -58,7 +59,7 @@ Public Class Decrypt
 
     Private Sub UpdateProgress_Tick(sender As Object, e As EventArgs) Handles UpdateProgress.Tick
         If Data.progress < 0 Then
-            UpdateProgress.Stop()
+            UpdateProgress.Enabled = False
             ProgressBar.Hide()
             PasswordBox.Show()
             PasswordLabel.Text = "Enter &password: "
@@ -66,14 +67,14 @@ Public Class Decrypt
             If encryptMode Then
                 End
             ElseIf changePass Then
-                UpdateProgress.Stop()
+                UpdateProgress.Enabled = False
                 changePass = False
                 encryptMode = True
                 ProgressBar.Hide()
                 PasswordBox.Show()
                 PasswordLabel.Text = "Enter new &password: "
             Else
-                UpdateProgress.Stop()
+                UpdateProgress.Enabled = False
                 Me.Close()
             End If
         Else

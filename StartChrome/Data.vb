@@ -7,6 +7,9 @@
     Public version As String = "1.0.0"
 
     Sub EncryptChrome()
+        'reset progress to 0
+        Data.progress = 0
+
         'create backup of old zip file
         If My.Computer.FileSystem.FileExists(Data.userPath + "\chrome.7z") Then
             My.Computer.FileSystem.MoveFile(Data.userPath + "\chrome.7z", Data.userPath + "\chrome-backup.7z", True)
@@ -49,6 +52,9 @@
     End Sub
 
     Sub DecryptChrome()
+        'reset progress to 0
+        Data.progress = 0
+
         'delete any files leftover in directory
         If My.Computer.FileSystem.DirectoryExists("C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\") Then
             My.Computer.FileSystem.DeleteDirectory("C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
