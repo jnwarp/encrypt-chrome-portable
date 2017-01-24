@@ -4,10 +4,6 @@ Public Class Decrypt
     Dim encryptMode = False
     Dim changePass = False
 
-    Private Sub Decrypt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Private Sub PasswordBox_KeyDown(sender As Object, e As KeyEventArgs) Handles PasswordBox.KeyDown
         'only try password if enter key pressed
         If e.KeyCode = Keys.Enter Then
@@ -83,6 +79,10 @@ Public Class Decrypt
     End Sub
 
     Private Sub Decrypt_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        e.Cancel = UpdateProgress.Enabled
+        If UpdateProgress.Enabled = True Then
+            e.Cancel = True
+        Else
+            End
+        End If
     End Sub
 End Class

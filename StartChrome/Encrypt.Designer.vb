@@ -31,18 +31,20 @@ Partial Class Encrypt
         '
         'ProgressBar
         '
-        Me.ProgressBar.Location = New System.Drawing.Point(12, 256)
+        Me.ProgressBar.Location = New System.Drawing.Point(6, 133)
+        Me.ProgressBar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.ProgressBar.Name = "ProgressBar"
-        Me.ProgressBar.Size = New System.Drawing.Size(992, 47)
+        Me.ProgressBar.Size = New System.Drawing.Size(496, 24)
         Me.ProgressBar.TabIndex = 5
         '
         'WarningLabel
         '
         Me.WarningLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.875!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.WarningLabel.ForeColor = System.Drawing.Color.Red
-        Me.WarningLabel.Location = New System.Drawing.Point(12, 9)
+        Me.WarningLabel.Location = New System.Drawing.Point(6, 5)
+        Me.WarningLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.WarningLabel.Name = "WarningLabel"
-        Me.WarningLabel.Size = New System.Drawing.Size(992, 50)
+        Me.WarningLabel.Size = New System.Drawing.Size(496, 26)
         Me.WarningLabel.TabIndex = 6
         Me.WarningLabel.Text = "Please wait for this process to finish before logging out"
         Me.WarningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -51,9 +53,10 @@ Partial Class Encrypt
         '
         Me.TimeLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TimeLabel.ForeColor = System.Drawing.Color.Black
-        Me.TimeLabel.Location = New System.Drawing.Point(12, 74)
+        Me.TimeLabel.Location = New System.Drawing.Point(6, 38)
+        Me.TimeLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.TimeLabel.Name = "TimeLabel"
-        Me.TimeLabel.Size = New System.Drawing.Size(992, 170)
+        Me.TimeLabel.Size = New System.Drawing.Size(496, 88)
         Me.TimeLabel.TabIndex = 7
         Me.TimeLabel.Text = "0%"
         Me.TimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -63,12 +66,13 @@ Partial Class Encrypt
         '
         'Encrypt
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1016, 315)
+        Me.ClientSize = New System.Drawing.Size(508, 164)
         Me.Controls.Add(Me.TimeLabel)
         Me.Controls.Add(Me.WarningLabel)
         Me.Controls.Add(Me.ProgressBar)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Encrypt"
