@@ -4,7 +4,7 @@
     Public userPath As String
     Public username As String
     Public chromeVersion As String = "GoogleChrome"
-    Public version As String = "1.0.0"
+    Public version As String = "1.0.1"
 
     Sub EncryptChrome()
         'reset progress to 0
