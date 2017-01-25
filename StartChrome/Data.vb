@@ -31,7 +31,7 @@
             Dim arguments = " a -bsp1 -sdel -mhe=on -r -p" + Data.passHash + " " + Data.tempDir + "\chrome-encrypt.7z " + Data.tempDir + "\StartChrome\*"
             process.StartInfo.Arguments = arguments
 
-            Debug.Print(program + arguments)
+            'Debug.Print(program + arguments)
 
             process.StartInfo.UseShellExecute = False
             process.StartInfo.RedirectStandardError = True
@@ -84,7 +84,7 @@
             Dim arguments = " x -bsp1 -p" + Data.passHash + " -o" + Data.tempDir + "\StartChrome\ " + Data.tempDir + "\chrome.7z"
             process.StartInfo.Arguments = arguments
 
-            Debug.Print("cmd " + arguments)
+            'Debug.Print("cmd " + arguments)
 
             process.StartInfo.UseShellExecute = False
             process.StartInfo.RedirectStandardError = True
