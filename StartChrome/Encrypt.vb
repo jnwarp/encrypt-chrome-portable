@@ -14,11 +14,20 @@ Public Class Encrypt
         'get the current path and username
         Data.userPath = Directory.GetCurrentDirectory()
         Data.username = Environment.UserName
+        Data.tempDir = "C:\Users\" + Data.username + "\AppData\Local\Temp"
         Debug.Print(Data.userPath)
         Debug.Print(Data.username)
+        Debug.Print(Data.tempDir)
 
         'prompt for password to decrypt chrome
         Decrypt.ShowDialog()
+
+        'check if no password was entered
+        If Data.passHash = "" Then
+            End
+        End If
+
+        'start chrome
         Data.StartChrome()
 
         'reset the progress back to 0 and begin encrypting chrome

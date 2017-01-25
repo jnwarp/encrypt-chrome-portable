@@ -5,6 +5,7 @@
     Public username As String
     Public chromeVersion As String = "GoogleChrome"
     Public version As String = "1.0.1"
+    Public tempDir As String
 
     Sub EncryptChrome()
         'reset progress to 0
@@ -12,14 +13,18 @@
 
         'create backup of old zip file
         If My.Computer.FileSystem.FileExists(Data.userPath + "\chrome.7z") Then
-            My.Computer.FileSystem.MoveFile(Data.userPath + "\chrome.7z", Data.userPath + "\chrome-backup.7z", True)
+            My.Computer.FileSystem.CopyFile(
+                Data.userPath + "\chrome.7z",
+                Data.userPath + "\chrome-backup.7z",
+                Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
+                Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
         End If
 
         Using process As Process = New Process
             Dim program = """" + Data.userPath + "\App\7-Zip\7z.exe"""
             process.StartInfo.FileName = program
 
-            Dim arguments = " a -bsp1 -sdel -mhe=on -r -p" + Data.passHash + " """ + Data.userPath + "\chrome.7z"" ""C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\*"""""
+            Dim arguments = " a -bsp1 -sdel -mhe=on -r -p" + Data.passHash + " """ + Data.tempDir + "\chrome-encrypt.7z"" """ + Data.tempDir + "\" + Data.chromeVersion + "Portable\*"""""
             process.StartInfo.Arguments = arguments
 
             'Debug.Print(program + arguments)
@@ -40,13 +45,13 @@
                 Debug.Print("Encrypting Error!")
                 Data.progress = -1
             Else
+                'copy chrome back to normal location
+                My.Computer.FileSystem.CopyFile(
+                    Data.tempDir + "\chrome-encrypt.7z",
+                    Data.userPath + "\chrome.7z",
+                    Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
+                    Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
                 Data.progress = 100
-
-                'delete backup if encrytion worked
-                If My.Computer.FileSystem.FileExists(Data.userPath + "\chrome-backup.7z") Then
-                    My.Computer.FileSystem.DeleteFile(Data.userPath + "\chrome-backup.7z", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
-                    Debug.Print("Delete backup file.")
-                End If
             End If
         End Using
     End Sub
@@ -56,18 +61,25 @@
         Data.progress = 0
 
         'delete any files leftover in directory
-        If My.Computer.FileSystem.DirectoryExists("C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\") Then
-            My.Computer.FileSystem.DeleteDirectory("C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
+        If My.Computer.FileSystem.DirectoryExists(Data.tempDir + "\" + Data.chromeVersion + "Portable\") Then
+            My.Computer.FileSystem.DeleteDirectory(Data.tempDir + "\" + Data.chromeVersion + "Portable\", FileIO.UIOption.OnlyErrorDialogs, FileIO.RecycleOption.DeletePermanently)
         End If
+
+        'copy zip file to temporary directory
+        My.Computer.FileSystem.CopyFile(
+            Data.userPath + "\chrome.7z",
+            Data.tempDir + "\chrome.7z",
+            Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
+            Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
 
         Using process As Process = New Process
             Dim program = """" + Data.userPath + "\App\7-Zip\7z.exe"""
             process.StartInfo.FileName = program
 
-            Dim arguments = " x -bsp1 -p" + Data.passHash + " -o""C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\"" """ + Data.userPath + "\chrome.7z"""
+            Dim arguments = " x -bsp1 -p" + Data.passHash + " -o""" + Data.tempDir + "\" + Data.chromeVersion + "Portable\"" """ + Data.tempDir + "\chrome.7z"""
             process.StartInfo.Arguments = arguments
 
-            'Debug.Print("cmd " + arguments)
+            Debug.Print("cmd " + arguments)
 
             process.StartInfo.UseShellExecute = False
             process.StartInfo.RedirectStandardError = True
@@ -93,7 +105,7 @@
     End Sub
     Sub StartChrome()
         Using process As Process = New Process
-            Dim program = """C:\Users\" + Data.username + "\AppData\Local\" + Data.chromeVersion + "Portable\" + Data.chromeVersion + "Portable.exe"""
+            Dim program = """" + Data.tempDir + "\" + Data.chromeVersion + "Portable\" + Data.chromeVersion + "Portable.exe"""
             process.StartInfo.FileName = program
 
             Dim arguments = ""

@@ -81,8 +81,6 @@ Public Class Decrypt
     Private Sub Decrypt_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If UpdateProgress.Enabled = True Then
             e.Cancel = True
-        Else
-            End
         End If
     End Sub
 End Class
